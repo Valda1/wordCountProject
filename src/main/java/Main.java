@@ -18,7 +18,7 @@ public class Main {
 
 
 
-        while (!userChoice.equals(4)) {
+        while (!userChoice.equals(5)) {
 
             wordCounter.displayMenuOption();
 
@@ -29,9 +29,12 @@ public class Main {
                     wordCounter.wordCount();
                     break;
                 case "2":
-                    //sth
+                    fileManager.createFile();
+                    wordCounter.charCountWithSpaces();
                     break;
                 case "3":
+                    //sth
+                case "4":
                     System.exit(0);
             }
 
