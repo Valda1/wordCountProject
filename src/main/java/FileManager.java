@@ -1,24 +1,45 @@
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 public class FileManager implements FileInterface{
 
     @Override
     public void createFile() {
-        String fileName = "usersText.txt";
-        File file = new File(fileName);
+        Scanner scanner = new Scanner(System.in);
 
-        try{
-            if(file.createNewFile()){
-                System.out.println("File created successfully!");
-            }else{
-                System.out.println("File already exists!");
-            }
+        System.out.println("Please enter your text here:");
 
-        }catch (IOException ex){
-            ex.printStackTrace();
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("usersText.txt"));
+            String userInput = scanner.nextLine();
+            bufferedWriter.write(userInput);
+            bufferedWriter.close();
+        }catch(IOException e){
+            e.printStackTrace();
         }
 
     }
+
+    @Override
+    public String getFileContent() {
+        String fileName = "usersText.txt";
+        File file = new File(fileName);
+        String fileContent = "";
+
+        try{
+            Scanner scanner = new Scanner(file);
+            while(scanner.hasNext()) {
+                //fileContent = fileContent + scanner.nextLine();
+                fileContent += scanner.nextLine() + "\n";
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return fileContent;
+
+
+    }
+
 
 }
