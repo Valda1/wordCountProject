@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -32,26 +31,32 @@ public class WordCounter {
         int charCount = 0;
 
         while((input = bufferedReader.readLine()) != null){
-            //characters = character.replaceAll("\\s", "").length();
             charCount += input.length();
         }
 
         fileReader.close();
 
-        System.out.println("Number of characters in your text without white spaces = " + charCount);
-
-
-
-
+        System.out.println("Number of characters in your text including white spaces = " + charCount);
 
     }
 
-    public void displayMenuOption() {
-        System.out.println("Welcome to Word Count Application!" +
-                "\n 1. Get word count " +
-                "\n 2. Get character count including whitespaces" +
-                "\n 3. Get character count without whitespaces" +
-                "\n 4. Exit");
+    public void charCountWithoutSpaces() throws IOException {
+
+        FileReader fileReader = new FileReader("usersText.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        int charCount = 0;
+
+        while(true){
+            int c = bufferedReader.read();
+            if (c < 0)
+                break;
+            if (!Character.isWhitespace(c))
+                charCount++;
+        }
+
+        fileReader.close();
+
+        System.out.println("Number of characters in your text without white spaces = " + charCount);
 
     }
 }

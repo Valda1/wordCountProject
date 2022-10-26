@@ -21,24 +21,17 @@ public class FileManager implements FileInterface{
     }
 
     @Override
-    public String getFileContent() {
-        String fileName = "usersText.txt";
-        File file = new File(fileName);
-        String fileContent = "";
+    public void deleteFile() {
 
-        try{
-            Scanner scanner = new Scanner(file);
-            while(scanner.hasNext()) {
-                //fileContent = fileContent + scanner.nextLine();
-                fileContent += scanner.nextLine() + "\n";
+        File file = new File("usersText.txt");
+
+        while (file.exists()) {
+            if (file.delete()) {
+                System.out.println("Goodbye!");
+            } else {
+                System.out.println("Problem deleting file!");
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
-
-        return fileContent;
-
-
     }
 
 
